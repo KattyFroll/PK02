@@ -1,0 +1,36 @@
+PHP
+=<?php
+// Подключение к базе данных MySQL
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cinema";
+
+$conn = new mysqli ($servername, $username, $Spassword, $dbname) ;
+
+// Проверка соединения
+if ($conn->connect_error) {
+die ("Ошибка подключения: "  {conn-›connect_error) ;
+// Получение данных извне через POST запрос
+// Данные приходят в виде массива $data
+$data = $_POST;
+// Проверка на корректность данных
+// Например, проверка на наличие обязательных полей, валидация значений и т.д.
+if (isset ($data['email']) & isset ($data['password1'])) {
+// Подготовка данных для вставки в бд
+$email = $conn->real_escape_string ($data ['email']) ;
+$password1 = $conn-›real_escape_string ($data ['password1']) ;
+
+// Запрос к базе данных для вставки данных
+$sql = "INSERT INTO таблица (email, password1) VALUES ('$email', '$password1')";
+if ($conn->query ($sql) === TRUE) (
+echo "Данные успешно записаны в базу данных" ;
+} else {
+echo "Ошибка при записи данных: "
+• $conn->error;
+} else (
+echo "Ошибка: недостаточно данных для записи в базу данных";
+
+/ Конец
+$conn->close () ;
+-?>
